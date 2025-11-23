@@ -47,7 +47,6 @@ try:
     st.subheader("📉 Candlestick + Moving Average (20)")
 
     fig = go.Figure()
-
     fig.add_trace(
         go.Candlestick(
             x=df.index,
@@ -92,5 +91,9 @@ try:
     st.subheader("Volume")
     st.bar_chart(df["volume"])
 
+except ValueError as ve:
+    st.error("Stock not found")
+except RuntimeError as re:
+    st.error(str(re))
 except Exception as e:
-    st.error(f"Error: {e}")
+    st.error(f"An error occurred: {e}")
